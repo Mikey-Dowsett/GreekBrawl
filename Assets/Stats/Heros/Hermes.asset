@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Hermes
   attack: 15
   health: 100
-  energy: 80
+  energy: 0
   accuracy: 60
   specials: 3
   specialName: Luck
@@ -23,6 +23,6 @@ MonoBehaviour:
   body: {fileID: 21300000, guid: 34bc6f257db7852498b11f16c75405fa, type: 3}
   classIcon: {fileID: 21300000, guid: f25b787d83fbfdc4c8ef36e2ecb5a53a, type: 3}
   description: Raise an allies accuracy.
-  attackPart: {fileID: 19800000, guid: c716261df916f61419116c38893522f0, type: 3}
+  attackPart: {fileID: 0}
   specialPart: {fileID: 0}
-  magicPart: {fileID: 19800000, guid: e8c5a31c615759543a0433440625e087, type: 3}
+  magicPart: {fileID: 0}

@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Siren
   attack: 15
   health: 100
-  energy: 80
+  energy: 0
   accuracy: 60
   specials: 2
   specialName: Distract
@@ -23,6 +23,6 @@ MonoBehaviour:
   body: {fileID: 21300000, guid: 3d2645066a821d440b0dc4dc60ec9aed, type: 3}
   classIcon: {fileID: 21300000, guid: 8f6c6ab6539f7db45add2ea182cbd9aa, type: 3}
   description: 'Lower an enemies accuracy. '
-  attackPart: {fileID: 19800000, guid: 3340e7154d148e7489a477afec5fe3dc, type: 3}
+  attackPart: {fileID: 0}
   specialPart: {fileID: 0}
-  magicPart: {fileID: 19800000, guid: e8c5a31c615759543a0433440625e087, type: 3}
+  magicPart: {fileID: 0}

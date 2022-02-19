@@ -33,6 +33,7 @@ public class Turns : MonoBehaviour
 
     void Update(){
         if(nextTurn){
+            //print("Next Turn");
             bottomImage.SetActive(false);
             heroScript.currentStats = null;
             if(turnNum == 4) {

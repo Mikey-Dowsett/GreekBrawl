@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Hydra
   attack: 10
   health: 100
-  energy: 80
+  energy: 0
   accuracy: 70
   specials: 1
   specialName: Spray
@@ -23,6 +23,6 @@ MonoBehaviour:
   body: {fileID: 21300000, guid: b03791d1a9e4e6c47ae6865ef3fadf8c, type: 3}
   classIcon: {fileID: 21300000, guid: e0b1112758cef6048aad5b255532751b, type: 3}
   description: Deal a powerful blow to all enemies.
-  attackPart: {fileID: 19800000, guid: 3340e7154d148e7489a477afec5fe3dc, type: 3}
+  attackPart: {fileID: 0}
   specialPart: {fileID: 0}
-  magicPart: {fileID: 19800000, guid: e8c5a31c615759543a0433440625e087, type: 3}
+  magicPart: {fileID: 0}

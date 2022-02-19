@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Vampire
   attack: 5
   health: 100
-  energy: 80
+  energy: 0
   accuracy: 80
   specials: 5
   specialName: Leach
@@ -23,6 +23,6 @@ MonoBehaviour:
   body: {fileID: 21300000, guid: 2f9ef035b50a5ec4f9e66af6724931b6, type: 3}
   classIcon: {fileID: 21300000, guid: 2988b07d737f5c7458d823f12bfe8cc0, type: 3}
   description: Increase an allies health.
-  attackPart: {fileID: 19800000, guid: 3340e7154d148e7489a477afec5fe3dc, type: 3}
+  attackPart: {fileID: 0}
   specialPart: {fileID: 0}
-  magicPart: {fileID: 19800000, guid: e8c5a31c615759543a0433440625e087, type: 3}
+  magicPart: {fileID: 0}

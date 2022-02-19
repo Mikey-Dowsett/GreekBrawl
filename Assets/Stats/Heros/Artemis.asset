@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Artemis
   attack: 10
   health: 100
-  energy: 80
+  energy: 0
   accuracy: 70
   specials: 1
   specialName: Volly
@@ -23,6 +23,6 @@ MonoBehaviour:
   body: {fileID: 21300000, guid: 2b2c5f0671d049e4f9b7358c9cd3c6f4, type: 3}
   classIcon: {fileID: 21300000, guid: e0b1112758cef6048aad5b255532751b, type: 3}
   description: Deal a powerful blow to all enemies.
-  attackPart: {fileID: 19800000, guid: c716261df916f61419116c38893522f0, type: 3}
+  attackPart: {fileID: 0}
   specialPart: {fileID: 0}
-  magicPart: {fileID: 19800000, guid: e8c5a31c615759543a0433440625e087, type: 3}
+  magicPart: {fileID: 0}

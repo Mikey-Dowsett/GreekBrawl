@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Aphrodite
   attack: 5
   health: 100
-  energy: 80
+  energy: 0
   accuracy: 80
   specials: 4
   specialName: Stun
@@ -23,6 +23,6 @@ MonoBehaviour:
   body: {fileID: 21300000, guid: fdb354bc33d236c4e8d6d47650cadaae, type: 3}
   classIcon: {fileID: 21300000, guid: 8481ba5c2387620488dcdd98d7d6fcb5, type: 3}
   description: Cause an enemy to miss their turn.
-  attackPart: {fileID: 19800000, guid: c716261df916f61419116c38893522f0, type: 3}
+  attackPart: {fileID: 0}
   specialPart: {fileID: 0}
-  magicPart: {fileID: 19800000, guid: e8c5a31c615759543a0433440625e087, type: 3}
+  magicPart: {fileID: 0}

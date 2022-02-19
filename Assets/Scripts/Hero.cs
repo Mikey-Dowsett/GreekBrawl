@@ -47,7 +47,7 @@ public class Hero : MonoBehaviour
         }
         specialButton.interactable = canSpecial;
 
-        if(hasAttacked && !canSpecial){
+        if(hasAttacked && !canSpecial && currentStats != null){
             StartCoroutine("SetNextTurn");
         }
     }
@@ -83,8 +83,8 @@ public class Hero : MonoBehaviour
                 }
                 choosenEnemy.GetComponent<StatHolder>().Damaged(attack);
                 turns.GetHero().GetComponent<StatHolder>().charge += 20;
-                Instantiate(currentStats.stats.attackPart, bottomImage.transform.position, Quaternion.identity);
-                Instantiate(currentStats.stats.magicPart, topImage.transform.position, Quaternion.identity);
+                //Instantiate(currentStats.stats.attackPart, bottomImage.transform.position, Quaternion.identity);
+                //Instantiate(currentStats.stats.magicPart, topImage.transform.position, Quaternion.identity);
             } else{
                 turns.GetHero().GetComponent<StatHolder>().charge += 10;
                 var temp = Instantiate(MissText, choosenEnemy.transform.position, Quaternion.identity);
@@ -92,6 +92,7 @@ public class Hero : MonoBehaviour
             }
             attackButton.interactable = false;
             hasAttacked = true;
+            choosenEnemy = null;
             StartCoroutine("CheckForDead");
         }
     }
@@ -151,18 +152,20 @@ public class Hero : MonoBehaviour
         Instantiate(StunText, currentStats.transform.position, Quaternion.identity);
         currentStats.stunned = false;
         yield return new WaitForSeconds(1f);
+        print("Player Stunned");
         turns.nextTurn = true;
         StopCoroutine("Stunned");
     }
 
     private IEnumerator SetNextTurn(){
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.25f);
+        print("Double Check");
         turns.nextTurn = true;
         StopCoroutine("SetNextTurn");
     }
 
     bool CheckForCrit(string hero, string enemy){
-        print(hero + " | " + enemy);
+        //print(hero + " | " + enemy);
         if(hero == "Concentrated" && enemy == "Wave"){
             print("Crit");
             return true;

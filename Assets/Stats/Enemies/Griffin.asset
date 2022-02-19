@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Griffin
   attack: 10
   health: 100
-  energy: 80
+  energy: 0
   accuracy: 70
   specials: 0
   specialName: Peck
@@ -23,6 +23,6 @@ MonoBehaviour:
   body: {fileID: 21300000, guid: d7606cef03a2b6a42ae503c60d7b07a1, type: 3}
   classIcon: {fileID: 21300000, guid: 5f9d3302ca0bfe34a82b6e221b0ef15d, type: 3}
   description: Deal a powerful blow to a single enemy.
-  attackPart: {fileID: 19800000, guid: 3340e7154d148e7489a477afec5fe3dc, type: 3}
+  attackPart: {fileID: 0}
   specialPart: {fileID: 0}
-  magicPart: {fileID: 19800000, guid: e8c5a31c615759543a0433440625e087, type: 3}
+  magicPart: {fileID: 0}
