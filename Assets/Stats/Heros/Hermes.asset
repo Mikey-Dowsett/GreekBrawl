@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 352dd963f9e3cad488522bab01d25b64, type: 3}
+  m_Name: Hermes
+  m_EditorClassIdentifier: 
+  title: Hermes
+  attack: 15
+  health: 100
+  energy: 80
+  accuracy: 60
+  specials: 3
+  specialName: Luck
+  icon: {fileID: 21300000, guid: d784f432fb89ee542aa4d95189a5f3fc, type: 3}
+  body: {fileID: 21300000, guid: 34bc6f257db7852498b11f16c75405fa, type: 3}
+  classIcon: {fileID: 21300000, guid: f25b787d83fbfdc4c8ef36e2ecb5a53a, type: 3}
+  description: Raise an allies accuracy.
+  attackPart: {fileID: 19800000, guid: c716261df916f61419116c38893522f0, type: 3}
+  specialPart: {fileID: 0}
+  magicPart: {fileID: 19800000, guid: e8c5a31c615759543a0433440625e087, type: 3}

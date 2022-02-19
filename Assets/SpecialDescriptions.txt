@@ -1,0 +1,17 @@
+Concentrated:
+Deal a powerful blow to a single enemy.
+
+Wave:
+Deal a powerful blow to all enemies.
+
+Smoke:
+Lower an enemies accuracy.
+
+Heighten:
+Raise an allies accuracy.
+
+Stun:
+Cause an enemy to miss their turn.
+
+Heal:
+Increase an allies health.
