@@ -23,11 +23,21 @@ public class Turns : MonoBehaviour
     [SerializeField] Animator scoreAnim;
     [SerializeField] SpriteRenderer topImage;
     [SerializeField] GameObject bottomImage;
+    [SerializeField] Animator turnArrow;
 
     public bool nextTurn = false;
     int turnNum = 0;
 
     void Start(){
+        if(playerTurn){
+            // turnArrow.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+            // turnArrow.color = new Color32(251, 242, 54, 255);
+            turnArrow.SetTrigger("Player");
+        }else{
+            // turnArrow.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+            // turnArrow.color = new Color32(172, 50, 50, 255);
+            turnArrow.SetTrigger("Enemy");
+        }
         StartCoroutine("WaitToStart");
     }
 
@@ -42,10 +52,16 @@ public class Turns : MonoBehaviour
                     playerTurn = false;
                     heroScript.enabled = false;
                     enemyScript.enabled = true;
+                    // turnArrow.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
+                    // turnArrow.color = new Color32(172, 50, 50, 255);
+                    turnArrow.SetTrigger("Enemy");
                 } else {
                     playerTurn = true;
                     heroScript.enabled = true;
                     enemyScript.enabled = false;
+                    // turnArrow.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    // turnArrow.color = new Color32(251, 242, 54, 255);
+                    turnArrow.SetTrigger("Player");
                 }
             }
             nextTurnButton.interactable = false;
