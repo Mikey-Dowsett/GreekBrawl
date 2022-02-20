@@ -48,7 +48,7 @@ public class HeroSpecials : MonoBehaviour
     }
 
     public void Heal(GameObject choosenHero){
-        float change = (int)Random.Range(10, 20);
+        float change = (int)Random.Range(15, 30);
         SetBuff(choosenHero, "+" + change.ToString());
         choosenHero.GetComponent<StatHolder>().health = Mathf.Clamp(choosenHero.GetComponent<StatHolder>().health + change, 0, 100);
         turns.GetHero().GetComponent<StatHolder>().charge -= 100;

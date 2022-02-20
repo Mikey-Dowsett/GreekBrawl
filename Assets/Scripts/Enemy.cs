@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject StunText;
     [SerializeField] GameObject bottomImage;
     [SerializeField] GameObject topImage;
+    [SerializeField] Animator topAnim;
 
     float attack;
 
@@ -44,9 +45,11 @@ public class Enemy : MonoBehaviour
         if(Random.Range(0, 100) <= teamStats[num].accuracy){
             teamStats[num].charge += 20;
             weakest.Damaged(attack);
-            //Instantiate(teamStats[num].stats.attackPart, bottomImage.transform.position, Quaternion.identity);
-            //Instantiate(teamStats[num].stats.magicPart, topImage.transform.position, Quaternion.identity);
+            topAnim.SetTrigger("Attack");
+            Instantiate(teamStats[num].stats.attackPart, bottomImage.transform.position, Quaternion.identity);
+            Instantiate(teamStats[num].stats.magicPart, topImage.transform.position, Quaternion.identity);
         } else {
+            topAnim.SetTrigger("Miss");
             teamStats[num].charge += 10;
             var temp = Instantiate(MissText, weakest.transform.position, Quaternion.identity);
             temp.transform.SetParent(weakest.transform);
@@ -57,7 +60,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         bottomImage.SetActive(false);
         string moves = teamStats[num].stats.specials.ToString();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         if(teamStats[num].charge >= 100){
             switch(moves){
                 case "Concentrated": special.StartCoroutine(special.Special(false, teamStats[num], "Concentrated")); break;
@@ -67,12 +70,14 @@ public class Enemy : MonoBehaviour
                 case "Stun": special.StartCoroutine(special.Special(false, teamStats[num], "Stun")); break;
                 case "Heal": special.StartCoroutine(special.Special(true, teamStats[num], "Heal")); break;
             }
-            print("Special");
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(0.75f);
+            Instantiate(teamStats[num].stats.specialPart, topImage.transform.position, Quaternion.identity);
+            topAnim.SetTrigger("Attack");
+            yield return new WaitForSeconds(1.75f);
             turns.nextTurn = true;
             StopCoroutine("FindTarget");
         }else{
-            print("else");
+            //print("else");
             turns.nextTurn = true;
             StopCoroutine("FindTarget");
         }
@@ -80,7 +85,7 @@ public class Enemy : MonoBehaviour
     }
 
     private IEnumerator Stunned(int num){
-        print("Enemy Stunned");
+        //print("Enemy Stunned");
         Instantiate(StunText, teamStats[num].transform.position, Quaternion.identity);
         teamStats[num].stunned = false;
         yield return new WaitForSeconds(1f);
@@ -90,6 +95,11 @@ public class Enemy : MonoBehaviour
 
     StatHolder GetEnemy(int num, List<StatHolder> stats){
         string special = teamStats[num].stats.specials.ToString();
+        foreach(StatHolder stat in stats){
+            if(stat.health < teamStats[num].attack){
+                return stat;
+            }
+        }
         switch(special){
             case "Concentrated": return FindSpecial("Wave", stats);
             case "Wave": return FindSpecial("Concentrated", stats);
@@ -104,7 +114,7 @@ public class Enemy : MonoBehaviour
     StatHolder FindSpecial(string target, List<StatHolder> stats){
         foreach(StatHolder stat in stats){
             if(stat.stats.specials.ToString() == target){
-                attack += Random.Range(5, 15);
+                attack += Random.Range(5, 10);
                 return stat;
             }
         }

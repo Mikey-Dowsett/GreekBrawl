@@ -6,10 +6,11 @@ using UnityEngine.UI;
 
 public class StatHolder : MonoBehaviour
 {
+    [SerializeField] GameObject display;
     [SerializeField] GameObject[] topTexts;
-    //[SerializeField] GameObject[] bottomTexts;
 
     [SerializeField] Animator anim;
+    [SerializeField] Animator bottomAnim;
     [SerializeField] Transform start;
     [SerializeField] Transform end;
     [SerializeField] Image teamIcon;
@@ -51,11 +52,12 @@ public class StatHolder : MonoBehaviour
         accuracy = Mathf.Clamp(accuracy, 0, 100);
         charge = Mathf.Clamp(charge, 0, 100);
         
-
-        topTexts[1].GetComponent<Image>().fillAmount = health/100;
-        topTexts[2].GetComponent<Image>().fillAmount = charge/100;
-        topTexts[3].GetComponent<TMP_Text>().text = attack.ToString();
-        topTexts[4].GetComponent<TMP_Text>().text = accuracy.ToString() + "%";
+        if(display != null){
+            topTexts[1].GetComponent<Image>().fillAmount = health/100;
+            topTexts[2].GetComponent<Image>().fillAmount = charge/100;
+            topTexts[3].GetComponent<TMP_Text>().text = attack.ToString();
+            topTexts[4].GetComponent<TMP_Text>().text = accuracy.ToString() + "%";
+        }
 
         if(stunned){
             GetComponent<SpriteRenderer>().color = new Color(0.3f, 0.3f, 0.3f);
@@ -71,6 +73,7 @@ public class StatHolder : MonoBehaviour
         health -= damage;
         if(health <= 0){
             transform.tag = "Lol";
+            GameObject.Destroy(display);
             GameObject.Destroy(GameObject.Find("HitText"));
             Instantiate(DeadText, transform.position, Quaternion.identity);
             if(transform.childCount > 0){
@@ -78,6 +81,7 @@ public class StatHolder : MonoBehaviour
             }
             anim.SetTrigger("Dead");
         }else{ 
+            bottomAnim.SetTrigger("Hit");
             var temp = Instantiate(HitText, transform.position, Quaternion.identity);
             temp.transform.SetParent(transform);
             temp.GetComponent<TMP_Text>().text = "-" + damage.ToString();

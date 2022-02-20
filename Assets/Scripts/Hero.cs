@@ -17,6 +17,7 @@ public class Hero : MonoBehaviour
     [SerializeField] GameObject StunText;
     [SerializeField] GameObject bottomImage;
     [SerializeField] GameObject topImage;
+    [SerializeField] Animator topAnim;
 
     int damage;
     int health;
@@ -79,20 +80,22 @@ public class Hero : MonoBehaviour
             if(Random.Range(0, 100) <= currentStats.accuracy){
                 float attack = currentStats.attack;
                 if(CheckForCrit(currentStats.stats.specials.ToString(), choosenEnemy.GetComponent<StatHolder>().stats.specials.ToString())){
-                    attack += Random.Range(5, 15);
+                    attack += Random.Range(5, 10);
                 }
                 choosenEnemy.GetComponent<StatHolder>().Damaged(attack);
                 turns.GetHero().GetComponent<StatHolder>().charge += 20;
-                //Instantiate(currentStats.stats.attackPart, bottomImage.transform.position, Quaternion.identity);
-                //Instantiate(currentStats.stats.magicPart, topImage.transform.position, Quaternion.identity);
+                topAnim.SetTrigger("Attack");
+                Instantiate(currentStats.stats.attackPart, bottomImage.transform.position, Quaternion.identity);
+                Instantiate(currentStats.stats.magicPart, topImage.transform.position, Quaternion.identity);
             } else{
+                topAnim.SetTrigger("Miss");
                 turns.GetHero().GetComponent<StatHolder>().charge += 10;
                 var temp = Instantiate(MissText, choosenEnemy.transform.position, Quaternion.identity);
                 temp.transform.SetParent(choosenEnemy.transform);
             }
             attackButton.interactable = false;
             hasAttacked = true;
-            choosenEnemy = null;
+            StartCoroutine("HideImage");
             StartCoroutine("CheckForDead");
         }
     }
@@ -110,27 +113,33 @@ public class Hero : MonoBehaviour
         string moves = currentStats.stats.specials.ToString();
         if(moves  == "Wave"){
             specialMove.Wave(currentStats.attack);
+            SpecialParticles();
         } else if(choosenEnemy != null && choosenEnemy.CompareTag("Enemy")) {
             switch (moves){
                 case "Concentrated": specialMove.Concentrated(choosenEnemy, currentStats.attack); break;
                 case "Smoke": specialMove.LowerAccuracy(choosenEnemy); break;
                 case "Stun": specialMove.StunEffect(choosenEnemy); break;
             }
+            SpecialParticles();
         } else{
             if(choosenEnemy == null) {
                 choosenEnemy = turns.GetHero(); 
-                specialMove.isCurrentHero = true;
-            } else{
+                specialMove.isCurrentHero = true; 
             }
             switch (moves){
-                case "Highten": specialMove.RaiseAccuracy(choosenEnemy); break;
-                case "Heal": specialMove.Heal(choosenEnemy); break;
+                case "Highten": specialMove.RaiseAccuracy(choosenEnemy); SpecialParticles(); break;
+                case "Heal": specialMove.Heal(choosenEnemy); SpecialParticles(); break;
             }
+            
         }
-        //choosenEnemy = null;
-        //EnemyMarker.position = new Vector3(11, 0, 0);
-        //EnemyMarker.parent = null;
+        
+        StartCoroutine("HideImage");
         canSpecial = false;
+    }
+
+    void SpecialParticles(){
+        topAnim.SetTrigger("Attack");
+        Instantiate(currentStats.stats.specialPart, topImage.transform.position, Quaternion.identity);
     }
 
     public void ResetSpecial(){
@@ -152,37 +161,39 @@ public class Hero : MonoBehaviour
         Instantiate(StunText, currentStats.transform.position, Quaternion.identity);
         currentStats.stunned = false;
         yield return new WaitForSeconds(1f);
-        print("Player Stunned");
+        //print("Player Stunned");
         turns.nextTurn = true;
         StopCoroutine("Stunned");
     }
 
     private IEnumerator SetNextTurn(){
         yield return new WaitForSeconds(1.25f);
-        print("Double Check");
+        //print("Double Check");
         turns.nextTurn = true;
         StopCoroutine("SetNextTurn");
     }
+    private IEnumerator HideImage(){
+        yield return new WaitForSeconds(0.75f);
+        choosenEnemy = null;
+        EnemyMarker.position = new Vector3(11, 0, 0);
+        EnemyMarker.parent = null;
+        choosenEnemy = null;
+        bottomImage.SetActive(false);
+        StopCoroutine("HideImage");
+    }
 
     bool CheckForCrit(string hero, string enemy){
-        //print(hero + " | " + enemy);
         if(hero == "Concentrated" && enemy == "Wave"){
-            print("Crit");
             return true;
         } else if(hero == "Wave" && enemy == "Concentrated"){
-            print("Crit");
             return true;
         } else if(hero == "Smoke" && enemy == "Highten"){
-            print("Crit");
             return true;
         } else if(hero == "Highten" && enemy == "Smoke"){
-            print("Crit");
             return true;
         } else if(hero == "Stun" && enemy == "Heal"){
-            print("Crit");
             return true;
         } else if(hero == "Heal" && enemy == "Stun"){
-            print("Crit");
             return true;
         }
         return false;

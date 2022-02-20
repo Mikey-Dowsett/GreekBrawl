@@ -17,8 +17,8 @@ public class EnemySpecial : MonoBehaviour
             GameObject[] allies = GameObject.FindGameObjectsWithTag("Enemy");
             selected = allies[Random.Range(0, allies.Length)].GetComponent<StatHolder>();
         } else{
-            GameObject[] allies = GameObject.FindGameObjectsWithTag("Hero");
-            selected = allies[Random.Range(0, allies.Length)].GetComponent<StatHolder>();
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hero");
+            selected = enemies[Random.Range(0, enemies.Length)].GetComponent<StatHolder>();
         }
         AttackMarker.SetParent(selected.transform);
         AttackMarker.position = selected.transform.position;
@@ -39,6 +39,12 @@ public class EnemySpecial : MonoBehaviour
     }
 
     public void Concentrated(StatHolder selected, float baseDamage){
+        GameObject[] allies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject ally in allies){
+            if(ally.GetComponent<StatHolder>().health < selected.health){
+                selected = ally.GetComponent<StatHolder>();
+            }
+        }
         float damage = baseDamage * Random.Range(1.5f, 2.5f);
         selected.Damaged((int)damage);
         current.charge -= 100;
@@ -75,7 +81,16 @@ public class EnemySpecial : MonoBehaviour
     }
 
     public void Heal(StatHolder selected){
-        int change = (int)Random.Range(10, 20);
+        GameObject[] allies = GameObject.FindGameObjectsWithTag("Enemy");
+        selected = allies[Random.Range(0, allies.Length)].GetComponent<StatHolder>();
+        foreach(GameObject ally in allies){
+            if(ally.GetComponent<StatHolder>().health < selected.health){
+                print(ally.GetComponent<StatHolder>().stats.name);
+                selected = ally.GetComponent<StatHolder>();
+            }
+        }
+        selected = allies[Random.Range(0, allies.Length)].GetComponent<StatHolder>();
+        int change = (int)Random.Range(15, 30);
         selected.health = Mathf.Clamp(selected.health + change, 0, 100);
         SetBuff(selected.gameObject, "+" + change.ToString());
         current.charge -= 100;

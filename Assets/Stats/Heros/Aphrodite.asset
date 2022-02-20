@@ -23,6 +23,6 @@ MonoBehaviour:
   body: {fileID: 21300000, guid: fdb354bc33d236c4e8d6d47650cadaae, type: 3}
   classIcon: {fileID: 21300000, guid: 8481ba5c2387620488dcdd98d7d6fcb5, type: 3}
   description: Cause an enemy to miss their turn.
-  attackPart: {fileID: 0}
-  specialPart: {fileID: 0}
-  magicPart: {fileID: 0}
+  attackPart: {fileID: 2190531916950529955, guid: 02532a82f594f7243a60ae45cc5fb558, type: 3}
+  specialPart: {fileID: 963406243316954990, guid: 517bb52db53412f4f83cebf9d58c747c, type: 3}
+  magicPart: {fileID: 3183830018583197059, guid: 5b5f084c2ae998e4cbfe508259ba147b, type: 3}

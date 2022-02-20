@@ -23,6 +23,6 @@ MonoBehaviour:
   body: {fileID: 21300000, guid: 2b2c5f0671d049e4f9b7358c9cd3c6f4, type: 3}
   classIcon: {fileID: 21300000, guid: e0b1112758cef6048aad5b255532751b, type: 3}
   description: Deal a powerful blow to all enemies.
-  attackPart: {fileID: 0}
-  specialPart: {fileID: 0}
-  magicPart: {fileID: 0}
+  attackPart: {fileID: 2190531916950529955, guid: 02532a82f594f7243a60ae45cc5fb558, type: 3}
+  specialPart: {fileID: 963406243316954990, guid: 517bb52db53412f4f83cebf9d58c747c, type: 3}
+  magicPart: {fileID: 3183830018583197059, guid: 5b5f084c2ae998e4cbfe508259ba147b, type: 3}
