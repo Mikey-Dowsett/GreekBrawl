@@ -19,6 +19,9 @@ public class Hero : MonoBehaviour
     [SerializeField] GameObject topImage;
     [SerializeField] Animator topAnim;
 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip missAudio;
+
     int damage;
     int health;
     float energy;
@@ -81,17 +84,30 @@ public class Hero : MonoBehaviour
                 float attack = currentStats.attack;
                 if(CheckForCrit(currentStats.stats.specials.ToString(), choosenEnemy.GetComponent<StatHolder>().stats.specials.ToString())){
                     attack += Random.Range(5, 10);
+                    audioSource.clip = currentStats.stats.strongAttackSound;
+                    audioSource.pitch = 1 - Random.Range(-0.3f, 0.3f);
+                    audioSource.Play();
+                } else {
+                    audioSource.clip = currentStats.stats.attackSound;
+                    audioSource.pitch = 1 - Random.Range(-0.3f, 0.3f);
+                    audioSource.Play();
                 }
                 choosenEnemy.GetComponent<StatHolder>().Damaged(attack);
                 turns.GetHero().GetComponent<StatHolder>().charge += 20;
                 topAnim.SetTrigger("Attack");
                 Instantiate(currentStats.stats.attackPart, bottomImage.transform.position, Quaternion.identity);
                 Instantiate(currentStats.stats.magicPart, topImage.transform.position, Quaternion.identity);
+
+                
             } else{
                 topAnim.SetTrigger("Miss");
                 turns.GetHero().GetComponent<StatHolder>().charge += 10;
                 var temp = Instantiate(MissText, choosenEnemy.transform.position, Quaternion.identity);
                 temp.transform.SetParent(choosenEnemy.transform);
+
+                audioSource.clip = missAudio;
+                audioSource.pitch = 1 - Random.Range(-0.3f, 0.3f);
+                audioSource.Play();
             }
             attackButton.interactable = false;
             hasAttacked = true;

@@ -19,6 +19,9 @@ public class Stats : ScriptableObject
     public ParticleSystem attackPart;
     public ParticleSystem specialPart;
     public ParticleSystem magicPart;
+    public AudioClip attackSound;
+    public AudioClip strongAttackSound;
+    public AudioClip deathSound;
 
     public enum Specials{
         Concentrated,

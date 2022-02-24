@@ -19,6 +19,8 @@ public class StatHolder : MonoBehaviour
     [SerializeField] GameObject DeadText;
     [SerializeField] GameObject HitText;
 
+    [SerializeField] AudioSource audioSource;
+
     public Stats stats;
 
     public float health;
@@ -79,6 +81,11 @@ public class StatHolder : MonoBehaviour
             if(transform.childCount > 0){
                 transform.GetChild(0).parent = null;
             }
+
+            audioSource.clip = stats.deathSound;
+            audioSource.pitch = 1 - Random.Range(-0.3f, 0.3f);
+            audioSource.Play();
+
             anim.SetTrigger("Dead");
         }else{ 
             bottomAnim.SetTrigger("Hit");

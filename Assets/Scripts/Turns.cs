@@ -32,11 +32,11 @@ public class Turns : MonoBehaviour
         if(playerTurn){
             // turnArrow.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             // turnArrow.color = new Color32(251, 242, 54, 255);
-            turnArrow.SetTrigger("Player");
+            turnArrow.SetBool("Player", true);
         }else{
             // turnArrow.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
             // turnArrow.color = new Color32(172, 50, 50, 255);
-            turnArrow.SetTrigger("Enemy");
+            turnArrow.SetBool("Player", false);
         }
         StartCoroutine("WaitToStart");
     }
@@ -54,14 +54,14 @@ public class Turns : MonoBehaviour
                     enemyScript.enabled = true;
                     // turnArrow.gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
                     // turnArrow.color = new Color32(172, 50, 50, 255);
-                    turnArrow.SetTrigger("Enemy");
+                    turnArrow.SetBool("Player", false);
                 } else {
                     playerTurn = true;
                     heroScript.enabled = true;
                     enemyScript.enabled = false;
                     // turnArrow.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
                     // turnArrow.color = new Color32(251, 242, 54, 255);
-                    turnArrow.SetTrigger("Player");
+                    turnArrow.SetBool("Player", true);
                 }
             }
             nextTurnButton.interactable = false;

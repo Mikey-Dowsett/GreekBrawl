@@ -17,7 +17,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject topImage;
     [SerializeField] Animator topAnim;
 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip missAudio;
+
     float attack;
+    bool critHit;
 
     public void NextTurn(int num){
         List<StatHolder> stats = new List<StatHolder>();
@@ -33,6 +37,7 @@ public class Enemy : MonoBehaviour
     }
 
     private IEnumerator FindTarget(int num, List<StatHolder> stats){
+        critHit = false;
         attack = teamStats[num].attack;
         yield return new WaitForSeconds(1f);
         StatHolder weakest = GetEnemy(num, stats);
@@ -48,12 +53,26 @@ public class Enemy : MonoBehaviour
             topAnim.SetTrigger("Attack");
             Instantiate(teamStats[num].stats.attackPart, bottomImage.transform.position, Quaternion.identity);
             Instantiate(teamStats[num].stats.magicPart, topImage.transform.position, Quaternion.identity);
+
+            if(critHit){
+                audioSource.clip = teamStats[num].stats.attackSound;
+                audioSource.pitch = 1 - Random.Range(-0.3f, 0.3f);
+                audioSource.Play();
+            } else {
+                audioSource.clip = teamStats[num].stats.attackSound;
+                audioSource.pitch = 1 - Random.Range(-0.3f, 0.3f);
+                audioSource.Play();
+            }
         } else {
             topAnim.SetTrigger("Miss");
             teamStats[num].charge += 10;
             var temp = Instantiate(MissText, weakest.transform.position, Quaternion.identity);
             temp.transform.SetParent(weakest.transform);
             temp.transform.position = weakest.transform.position;
+
+            audioSource.clip = missAudio;
+            audioSource.pitch = 1 - Random.Range(-0.3f, 0.3f);
+            audioSource.Play();
         }
         attackTarget.parent = null;
         attackTarget.position = new Vector3(-11, 0, 0);
@@ -115,6 +134,7 @@ public class Enemy : MonoBehaviour
         foreach(StatHolder stat in stats){
             if(stat.stats.specials.ToString() == target){
                 attack += Random.Range(5, 10);
+                critHit = true;
                 return stat;
             }
         }

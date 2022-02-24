@@ -1,5 +1,5 @@
 Concentrated:
-Deal a powerful blow to a single enemy.
+Deal a powerful blow to an enemy.
 
 Wave:
 Deal a powerful blow to all enemies.

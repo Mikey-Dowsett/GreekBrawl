@@ -8,6 +8,7 @@ public class Menu : MonoBehaviour
     [SerializeField] GameObject MainMenu;
     [SerializeField] GameObject HowTo;
     [SerializeField] GameObject Settings;
+    [SerializeField] GameObject Classes;
 
     public void Play(){
         SceneManager.LoadScene(1);
@@ -22,10 +23,16 @@ public class Menu : MonoBehaviour
         MainMenu.SetActive(true);
         HowTo.SetActive(false);
         Settings.SetActive(false);
+        Classes.SetActive(false);
     }
 
     public void ActivateSettings(){
         MainMenu.SetActive(false);
         Settings.SetActive(true);
+    }
+
+    public void ActivateClasses(){
+        MainMenu.SetActive(false);
+        Classes.SetActive(true);
     }
 }
