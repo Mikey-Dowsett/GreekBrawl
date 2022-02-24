@@ -13,20 +13,9 @@ public class EnemySpecial : MonoBehaviour
     public IEnumerator Special(bool ally, StatHolder _current, string type){
         current = _current;
         StatHolder selected;
-        if(ally){
-            GameObject[] allies = GameObject.FindGameObjectsWithTag("Enemy");
-            selected = allies[Random.Range(0, allies.Length)].GetComponent<StatHolder>();
-        } else{
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hero");
-            selected = enemies[Random.Range(0, enemies.Length)].GetComponent<StatHolder>();
-        }
-        AttackMarker.SetParent(selected.transform);
-        AttackMarker.position = selected.transform.position;
-        bottomImage.GetComponent<SpriteRenderer>().sprite = selected.GetComponent<StatHolder>().stats.body;
-        bottomImage.SetActive(true);
+        selected = FindTarget(type);
+        FoundSelected(selected);
         yield return new WaitForSeconds(0.75f);
-        
-        
         switch(type){
             case "Concentrated": Concentrated(selected, current.attack); break;
             case "Wave": Wave(current.attack);  break;
@@ -38,14 +27,48 @@ public class EnemySpecial : MonoBehaviour
 
     }
 
-    public void Concentrated(StatHolder selected, float baseDamage){
+    StatHolder FindTarget(string type){
         GameObject[] allies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach(GameObject ally in allies){
-            if(ally.GetComponent<StatHolder>().health < selected.health){
-                selected = ally.GetComponent<StatHolder>();
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Hero");
+        StatHolder allySelected = allies[0].GetComponent<StatHolder>();
+        StatHolder enemySelected = enemies[0].GetComponent<StatHolder>();
+
+        if(type == "Concentrated"){
+            foreach(GameObject ally in allies){
+                if(ally.GetComponent<StatHolder>().health < enemySelected.health){
+                    enemySelected = ally.GetComponent<StatHolder>();
+                }
             }
+            return enemySelected;
+        } else if(type == "Smoke"){
+            foreach(GameObject ally in allies){
+                if(ally.GetComponent<StatHolder>().accuracy > enemySelected.accuracy){
+                    enemySelected = ally.GetComponent<StatHolder>();
+                }
+            }
+            return enemySelected;
+        } else if(type == "Highten"){
+                foreach(GameObject ally in allies){
+                if(ally.GetComponent<StatHolder>().accuracy < allySelected.accuracy){
+                    allySelected = ally.GetComponent<StatHolder>();
+                }
+            }
+            return allySelected;
+        } else if(type == "Heal"){
+            foreach(GameObject ally in allies){
+                if(ally.GetComponent<StatHolder>().health < allySelected.health){
+                    print(ally.GetComponent<StatHolder>().stats.name);
+                    allySelected = ally.GetComponent<StatHolder>();
+                }
+            }
+            return allySelected;
+        } else {
+            return enemies[Random.Range(0, enemies.Length)].GetComponent<StatHolder>();
         }
-        float damage = baseDamage * Random.Range(1.5f, 2.5f);
+    }
+
+    public void Concentrated(StatHolder selected, float baseDamage){
+        float damage = baseDamage + Random.Range(5, 15);
         selected.Damaged((int)damage);
         current.charge -= 100;
     }
@@ -54,7 +77,7 @@ public class EnemySpecial : MonoBehaviour
         GameObject[] heros = GameObject.FindGameObjectsWithTag("Hero");
 
         foreach(GameObject hero in heros){
-            float damage = baseDamage * Random.Range(1.5f, 2);
+            float damage = baseDamage + Random.Range(0, 5);
             hero.GetComponent<StatHolder>().Damaged((int)damage);
         }
         current.charge -= 100;
@@ -81,15 +104,6 @@ public class EnemySpecial : MonoBehaviour
     }
 
     public void Heal(StatHolder selected){
-        GameObject[] allies = GameObject.FindGameObjectsWithTag("Enemy");
-        selected = allies[Random.Range(0, allies.Length)].GetComponent<StatHolder>();
-        foreach(GameObject ally in allies){
-            if(ally.GetComponent<StatHolder>().health < selected.health){
-                print(ally.GetComponent<StatHolder>().stats.name);
-                selected = ally.GetComponent<StatHolder>();
-            }
-        }
-        selected = allies[Random.Range(0, allies.Length)].GetComponent<StatHolder>();
         int change = (int)Random.Range(15, 30);
         selected.health = Mathf.Clamp(selected.health + change, 0, 100);
         SetBuff(selected.gameObject, "+" + change.ToString());
@@ -100,5 +114,12 @@ public class EnemySpecial : MonoBehaviour
         var temp = Instantiate(BuffText, target.transform.position, Quaternion.identity);
         temp.GetComponent<TMP_Text>().text = message;
         temp.transform.SetParent(target.transform); 
+    }
+
+    void FoundSelected(StatHolder selected){
+        AttackMarker.SetParent(selected.transform);
+        AttackMarker.position = selected.transform.position;
+        bottomImage.GetComponent<SpriteRenderer>().sprite = selected.GetComponent<StatHolder>().stats.body;
+        bottomImage.SetActive(true);
     }
 }

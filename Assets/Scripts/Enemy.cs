@@ -114,9 +114,13 @@ public class Enemy : MonoBehaviour
 
     StatHolder GetEnemy(int num, List<StatHolder> stats){
         string special = teamStats[num].stats.specials.ToString();
+        StatHolder curStat = stats[0];
         foreach(StatHolder stat in stats){
             if(stat.health < teamStats[num].attack){
                 return stat;
+            }
+            if(stat.health < curStat.health){
+                curStat = stat;
             }
         }
         switch(special){
@@ -127,7 +131,7 @@ public class Enemy : MonoBehaviour
             case "Heal": return FindSpecial("Stun", stats);
             case "Stun": return FindSpecial("Heal", stats);
         }
-        return null;
+        return curStat;
     }
 
     StatHolder FindSpecial(string target, List<StatHolder> stats){

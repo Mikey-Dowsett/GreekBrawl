@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Charon
   attack: 15
   health: 100
-  energy: 0
+  energy: 80
   accuracy: 60
   specials: 3
   specialName: Focus

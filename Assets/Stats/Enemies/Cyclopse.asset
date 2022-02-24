@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Cyclopse
   attack: 10
   health: 100
-  energy: 0
+  energy: 80
   accuracy: 70
   specials: 0
   specialName: Smash

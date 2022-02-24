@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Medusa
   attack: 5
   health: 100
-  energy: 0
+  energy: 80
   accuracy: 80
   specials: 4
   specialName: Paralize
