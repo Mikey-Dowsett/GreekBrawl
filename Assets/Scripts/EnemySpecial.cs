@@ -34,14 +34,14 @@ public class EnemySpecial : MonoBehaviour
         StatHolder enemySelected = enemies[0].GetComponent<StatHolder>();
 
         if(type == "Concentrated"){
-            foreach(GameObject ally in allies){
+            foreach(GameObject ally in enemies){
                 if(ally.GetComponent<StatHolder>().health < enemySelected.health){
                     enemySelected = ally.GetComponent<StatHolder>();
                 }
             }
             return enemySelected;
         } else if(type == "Smoke"){
-            foreach(GameObject ally in allies){
+            foreach(GameObject ally in enemies){
                 if(ally.GetComponent<StatHolder>().accuracy > enemySelected.accuracy){
                     enemySelected = ally.GetComponent<StatHolder>();
                 }

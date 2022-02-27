@@ -15,7 +15,7 @@ MonoBehaviour:
   title: Sphinx
   attack: 15
   health: 100
-  energy: 80
+  energy: 0
   accuracy: 60
   specials: 2
   specialName: Riddle
@@ -29,3 +29,4 @@ MonoBehaviour:
   attackSound: {fileID: 8300000, guid: 15343b9c9a444a042b96b6a0c744f67e, type: 3}
   strongAttackSound: {fileID: 8300000, guid: 98c850cfa134c2248a5c744448d5f708, type: 3}
   deathSound: {fileID: 8300000, guid: 6e37c5805ef378547b4f5ab92136ee35, type: 3}
+  magic: {fileID: 8300000, guid: 491d5c60ccb37a94690381d400efda8d, type: 3}

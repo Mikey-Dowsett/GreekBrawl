@@ -25,10 +25,15 @@ public class Turns : MonoBehaviour
     [SerializeField] GameObject bottomImage;
     [SerializeField] Animator turnArrow;
 
+    [SerializeField] AudioSource doneSound;
+    [SerializeField] AudioClip win;
+    [SerializeField] AudioClip lose;
+
     public bool nextTurn = false;
     int turnNum = 0;
 
     void Start(){
+        playerTurn = Random.Range(0, 2) == 1 ? true : false;
         if(playerTurn){
             // turnArrow.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             // turnArrow.color = new Color32(251, 242, 54, 255);
@@ -115,6 +120,8 @@ public class Turns : MonoBehaviour
         }
 
         if(!herosLeft){
+            doneSound.clip = lose;
+            doneSound.Play();
             scoreAnim.SetBool("Defeat", true);
             print("Defeat");
             enemyScript.enabled = false;
@@ -133,6 +140,8 @@ public class Turns : MonoBehaviour
         }
 
         if(!herosLeft){
+            doneSound.clip = win;
+            doneSound.Play();
             scoreAnim.SetBool("Victory", true);
             print("Victory");
             enemyScript.enabled = false;
@@ -149,7 +158,12 @@ public class Turns : MonoBehaviour
     }
 
     private IEnumerator WaitToStart(){
-        yield return new WaitForSeconds(0.1f);
+        if(playerTurn){
+            topImage.sprite = characters[0].GetComponent<StatHolder>().stats.body;
+        } else {
+            topImage.sprite = enemies[0].GetComponent<StatHolder>().stats.body;
+        }
+        yield return new WaitForSeconds(1.5f);
         nextTurn = true;
     }
 }

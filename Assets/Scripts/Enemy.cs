@@ -92,6 +92,9 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(0.75f);
             Instantiate(teamStats[num].stats.specialPart, topImage.transform.position, Quaternion.identity);
             topAnim.SetTrigger("Attack");
+            audioSource.clip = teamStats[num].stats.magic;
+            audioSource.pitch = 1 - Random.Range(-0.3f, 0.3f);
+            audioSource.Play();
             yield return new WaitForSeconds(1.75f);
             turns.nextTurn = true;
             StopCoroutine("FindTarget");
@@ -124,17 +127,17 @@ public class Enemy : MonoBehaviour
             }
         }
         switch(special){
-            case "Concentrated": return FindSpecial("Wave", stats);
-            case "Wave": return FindSpecial("Concentrated", stats);
-            case "Highten": return FindSpecial("Smoke", stats);
-            case "Smoke": return FindSpecial("Highten", stats);
-            case "Heal": return FindSpecial("Stun", stats);
-            case "Stun": return FindSpecial("Heal", stats);
+            case "Concentrated": return FindSpecial("Wave", stats, curStat);
+            case "Wave": return FindSpecial("Concentrated", stats, curStat);
+            case "Highten": return FindSpecial("Smoke", stats, curStat);
+            case "Smoke": return FindSpecial("Highten", stats, curStat);
+            case "Heal": return FindSpecial("Stun", stats, curStat);
+            case "Stun": return FindSpecial("Heal", stats, curStat);
         }
         return curStat;
     }
 
-    StatHolder FindSpecial(string target, List<StatHolder> stats){
+    StatHolder FindSpecial(string target, List<StatHolder> stats, StatHolder curStat){
         foreach(StatHolder stat in stats){
             if(stat.stats.specials.ToString() == target){
                 attack += Random.Range(5, 10);
@@ -142,6 +145,6 @@ public class Enemy : MonoBehaviour
                 return stat;
             }
         }
-        return stats[Random.Range(0, stats.Count)];
+        return curStat;
     }
 }

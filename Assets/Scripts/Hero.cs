@@ -132,23 +132,24 @@ public class Hero : MonoBehaviour
             SpecialParticles();
         } else if(choosenEnemy != null && choosenEnemy.CompareTag("Enemy")) {
             switch (moves){
-                case "Concentrated": specialMove.Concentrated(choosenEnemy, currentStats.attack); break;
-                case "Smoke": specialMove.LowerAccuracy(choosenEnemy); break;
-                case "Stun": specialMove.StunEffect(choosenEnemy); break;
+                case "Concentrated": specialMove.Concentrated(choosenEnemy, currentStats.attack); SpecialParticles(); break;
+                case "Smoke": specialMove.LowerAccuracy(choosenEnemy); SpecialParticles(); break;
+                case "Stun": specialMove.StunEffect(choosenEnemy); SpecialParticles(); break;
             }
-            SpecialParticles();
+            
         } else{
             if(choosenEnemy == null) {
                 choosenEnemy = turns.GetHero(); 
                 specialMove.isCurrentHero = true; 
             }
-            switch (moves){
-                case "Highten": specialMove.RaiseAccuracy(choosenEnemy); SpecialParticles(); break;
-                case "Heal": specialMove.Heal(choosenEnemy); SpecialParticles(); break;
+            if(choosenEnemy.CompareTag("Hero")){
+                switch (moves){
+                    case "Highten": specialMove.RaiseAccuracy(choosenEnemy); SpecialParticles(); break;
+                    case "Heal": specialMove.Heal(choosenEnemy); SpecialParticles(); break;
+                }
             }
             
         }
-        
         StartCoroutine("HideImage");
         canSpecial = false;
     }
@@ -156,6 +157,9 @@ public class Hero : MonoBehaviour
     void SpecialParticles(){
         topAnim.SetTrigger("Attack");
         Instantiate(currentStats.stats.specialPart, topImage.transform.position, Quaternion.identity);
+        audioSource.clip = currentStats.stats.magic;
+        audioSource.pitch = 1 - Random.Range(-0.3f, 0.3f);
+        audioSource.Play();
     }
 
     public void ResetSpecial(){
@@ -183,7 +187,7 @@ public class Hero : MonoBehaviour
     }
 
     private IEnumerator SetNextTurn(){
-        yield return new WaitForSeconds(1.25f);
+        yield return new WaitForSeconds(1.5f);
         //print("Double Check");
         turns.nextTurn = true;
         StopCoroutine("SetNextTurn");

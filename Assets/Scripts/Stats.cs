@@ -22,6 +22,7 @@ public class Stats : ScriptableObject
     public AudioClip attackSound;
     public AudioClip strongAttackSound;
     public AudioClip deathSound;
+    public AudioClip magic;
 
     public enum Specials{
         Concentrated,
