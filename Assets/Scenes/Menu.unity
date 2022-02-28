@@ -272,8 +272,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -50}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchoredPosition: {x: 0, y: 50}
+  m_SizeDelta: {x: 125, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &82901676
 MonoBehaviour:
@@ -473,6 +473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Stun
   description: Cause an enemy to miss their turn.
+  self: {fileID: 21300000, guid: 8481ba5c2387620488dcdd98d7d6fcb5, type: 3}
   strong: {fileID: 21300000, guid: 2988b07d737f5c7458d823f12bfe8cc0, type: 3}
   heros:
   - {fileID: 21300000, guid: fdb354bc33d236c4e8d6d47650cadaae, type: 3}
@@ -482,7 +483,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9b5acccf26bff8e4dbe0fa69277cc2f2, type: 3}
   titleText: {fileID: 781978644}
   descriptionText: {fileID: 875420198}
-  strongImage: {fileID: 82901676}
+  selfImage: {fileID: 82901676}
+  strongImage: {fileID: 661083504}
   heroImages:
   - {fileID: 1438024329}
   - {fileID: 547562719}
@@ -772,6 +774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Power
   description: 'Deal a powerful blow to an enemy. '
+  self: {fileID: 21300000, guid: 5f9d3302ca0bfe34a82b6e221b0ef15d, type: 3}
   strong: {fileID: 21300000, guid: e0b1112758cef6048aad5b255532751b, type: 3}
   heros:
   - {fileID: 21300000, guid: 9289b2ed57d33d44288b8782bf63bfd0, type: 3}
@@ -781,7 +784,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 39e5e082cdf77af4d97cae42b1ae0103, type: 3}
   titleText: {fileID: 781978644}
   descriptionText: {fileID: 875420198}
-  strongImage: {fileID: 82901676}
+  selfImage: {fileID: 82901676}
+  strongImage: {fileID: 661083504}
   heroImages:
   - {fileID: 1438024329}
   - {fileID: 547562719}
@@ -1101,6 +1105,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Wave
   description: Deal a powerful blow to all enemies.
+  self: {fileID: 21300000, guid: e0b1112758cef6048aad5b255532751b, type: 3}
   strong: {fileID: 21300000, guid: 5f9d3302ca0bfe34a82b6e221b0ef15d, type: 3}
   heros:
   - {fileID: 21300000, guid: efc007f387bba144184d87959045e265, type: 3}
@@ -1110,7 +1115,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c4e39f952a7c39346bd5eb8d9a44769b, type: 3}
   titleText: {fileID: 781978644}
   descriptionText: {fileID: 875420198}
-  strongImage: {fileID: 82901676}
+  selfImage: {fileID: 82901676}
+  strongImage: {fileID: 661083504}
   heroImages:
   - {fileID: 1438024329}
   - {fileID: 547562719}
@@ -2448,6 +2454,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Heal
   description: Increase an allies health.
+  self: {fileID: 21300000, guid: 2988b07d737f5c7458d823f12bfe8cc0, type: 3}
   strong: {fileID: 21300000, guid: 8481ba5c2387620488dcdd98d7d6fcb5, type: 3}
   heros:
   - {fileID: 21300000, guid: 44331a74aa358884c93f045c4dabd855, type: 3}
@@ -2457,7 +2464,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2f9ef035b50a5ec4f9e66af6724931b6, type: 3}
   titleText: {fileID: 781978644}
   descriptionText: {fileID: 875420198}
-  strongImage: {fileID: 82901676}
+  selfImage: {fileID: 82901676}
+  strongImage: {fileID: 661083504}
   heroImages:
   - {fileID: 1438024329}
   - {fileID: 547562719}
@@ -2626,6 +2634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: '- Accuracy'
   description: Lower an enemies accuracy.
+  self: {fileID: 21300000, guid: 8f6c6ab6539f7db45add2ea182cbd9aa, type: 3}
   strong: {fileID: 21300000, guid: f25b787d83fbfdc4c8ef36e2ecb5a53a, type: 3}
   heros:
   - {fileID: 21300000, guid: 48cf8ceec5a84cf4d8e0b61d1d38174a, type: 3}
@@ -2635,7 +2644,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 760d51f849f390e4dbdd42d2c3d9f7c8, type: 3}
   titleText: {fileID: 781978644}
   descriptionText: {fileID: 875420198}
-  strongImage: {fileID: 82901676}
+  selfImage: {fileID: 82901676}
+  strongImage: {fileID: 661083504}
   heroImages:
   - {fileID: 1438024329}
   - {fileID: 547562719}
@@ -2644,6 +2654,81 @@ MonoBehaviour:
   - {fileID: 1467734977}
   selected: {fileID: 1320045649}
   showOnStart: 0
+--- !u!1 &661083502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 661083503}
+  - component: {fileID: 661083505}
+  - component: {fileID: 661083504}
+  m_Layer: 5
+  m_Name: Image (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &661083503
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661083502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 941505234}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -200}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &661083504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661083502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &661083505
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 661083502}
+  m_CullTransparentMesh: 1
 --- !u!1 &695218829
 GameObject:
   m_ObjectHideFlags: 0
@@ -2887,6 +2972,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: + Accuracy
   description: Raise an allies accuracy.
+  self: {fileID: 21300000, guid: f25b787d83fbfdc4c8ef36e2ecb5a53a, type: 3}
   strong: {fileID: 21300000, guid: 8f6c6ab6539f7db45add2ea182cbd9aa, type: 3}
   heros:
   - {fileID: 21300000, guid: 390fce50421b5064a9a442a220b373ca, type: 3}
@@ -2896,7 +2982,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4086fd67d1f2a1f4cbb49ab3c581c6b3, type: 3}
   titleText: {fileID: 781978644}
   descriptionText: {fileID: 875420198}
-  strongImage: {fileID: 82901676}
+  selfImage: {fileID: 82901676}
+  strongImage: {fileID: 661083504}
   heroImages:
   - {fileID: 1438024329}
   - {fileID: 547562719}
@@ -4152,6 +4239,8 @@ RectTransform:
   m_Children:
   - {fileID: 1698665631}
   - {fileID: 82901675}
+  - {fileID: 1544271276}
+  - {fileID: 661083503}
   m_Father: {fileID: 1675947632}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6424,6 +6513,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540496917}
+  m_CullTransparentMesh: 1
+--- !u!1 &1544271275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1544271276}
+  - component: {fileID: 1544271278}
+  - component: {fileID: 1544271277}
+  m_Layer: 5
+  m_Name: Image (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1544271276
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544271275}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 941505234}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -75}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1544271277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544271275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: d5b658a35e951794da318703d6e0ae31, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1544271278
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1544271275}
   m_CullTransparentMesh: 1
 --- !u!1 &1580783061
 GameObject:

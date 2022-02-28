@@ -8,12 +8,14 @@ public class DisplayClassStats : MonoBehaviour
 {
     [SerializeField] string title;
     [SerializeField] string description;
+    [SerializeField] Sprite self;
     [SerializeField] Sprite strong;
     [SerializeField] Sprite[] heros;
     [SerializeField] Sprite [] monsters;
 
     [SerializeField] TMP_Text titleText;
     [SerializeField] TMP_Text descriptionText;
+    [SerializeField] Image selfImage;
     [SerializeField] Image strongImage;
     [SerializeField] Image[] heroImages;
     [SerializeField] Image[] monsterImages;
@@ -30,6 +32,7 @@ public class DisplayClassStats : MonoBehaviour
             monsterImages[0].sprite = monsters[0];
             monsterImages[1].sprite = monsters[1];
             strongImage.sprite = strong;
+            selfImage.sprite = self;
             selected.position = transform.position;
         }
     }
@@ -42,6 +45,7 @@ public class DisplayClassStats : MonoBehaviour
         monsterImages[0].sprite = monsters[0];
         monsterImages[1].sprite = monsters[1];
         strongImage.sprite = strong;
+        selfImage.sprite = self;
         selected.position = transform.position;
     }
 }
